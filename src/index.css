@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.navbar {
+  @apply bg-white h-14 flex justify-between items-center shadow-md px-16;
+}
+
+.navbar-brand {
+  @apply text-2xl font-semibold;
+}
+
+.sidebar {
+  @apply h-screen w-64 py-6 px-3 flex flex-col gap-3;
+}
+
+.card {
+  @apply border rounded shadow;
+}
+
+.table {
+  @apply w-full;
+}
+
+.table > .table-head {
+  @apply font-semibold bg-slate-200;
+}
+
+.table > .table-head > tr,
+.table > tbody > tr {
+  @apply border-b;
+}
+
+.table > .table-head > tr > th,
+.table > tbody > tr > td {
+  @apply py-2;
+}
+
+.btn-blue-md {
+  @apply p-1 bg-sky-600 rounded text-white;
+}
+
+.btn-red-md {
+  @apply p-2 bg-red-600 rounded text-white;
+}
+
+.btn-yellow-md {
+  @apply p-2 bg-yellow-500 rounded text-white;
+}
