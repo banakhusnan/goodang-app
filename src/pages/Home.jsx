@@ -13,9 +13,15 @@ const handleRupiah = (number) => {
 const Home = () => {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
+  const accessToken = sessionStorage.getItem("accessToken");
 
   const getProducts = async () => {
-    const response = await fetch("http://test-server.test/api/product");
+    const response = await fetch("http://test-server.test/api/product", {
+      headers: {
+        Accept: "application/json",
+        Authorization: "Bearer " + accessToken,
+      },
+    });
     const data = await response.json();
     setProducts(data.data);
   };
@@ -28,6 +34,7 @@ const Home = () => {
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
+          Authorization: "Bearer " + accessToken,
         },
       }
     );

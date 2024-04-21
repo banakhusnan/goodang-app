@@ -6,6 +6,7 @@ import Input from "../components/Input/Input";
 import SelectInput from "../components/Input/SelectInput";
 
 function UpdateProduct() {
+  const accessToken = sessionStorage.getItem("accessToken");
   const navigate = useNavigate();
   const location = useLocation();
   const codeProduct = location.state.code;
@@ -16,7 +17,13 @@ function UpdateProduct() {
 
   const getProduct = async () => {
     const response = await fetch(
-      "http://test-server.test/api/product/" + codeProduct
+      "http://test-server.test/api/product/" + codeProduct,
+      {
+        headers: {
+          Accept: "application/json",
+          Authorization: "Bearer " + accessToken,
+        },
+      }
     );
 
     if (!response.ok) {
@@ -42,6 +49,7 @@ function UpdateProduct() {
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
+          Authorization: "Bearer " + accessToken,
         },
       }
     );
@@ -54,7 +62,12 @@ function UpdateProduct() {
   };
 
   const getCategories = async () => {
-    const response = await fetch("http://test-server.test/api/get-categories");
+    const response = await fetch("http://test-server.test/api/get-categories", {
+      headers: {
+        Accept: "application/json",
+        Authorization: "Bearer " + accessToken,
+      },
+    });
     const data = await response.json();
     setCategories(data.data);
   };
